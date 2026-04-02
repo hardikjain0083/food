@@ -34,7 +34,7 @@ async function signup() {
 
     if (res.ok) {
         alert("Signup successful!");
-        window.location.href = "login.html";
+        window.location.href = "/login.html";
     } else {
         alert(result.error);
     }
@@ -57,9 +57,9 @@ async function login() {
         sessionStorage.setItem("user", JSON.stringify(data.user));
 
         if (data.user.role === "restaurant") {
-            window.location.href = "restaurant.html";
+            window.location.href = "/restaurant.html";
         } else {
-            window.location.href = "ngo.html";
+            window.location.href = "/ngo.html";
         }
     } else {
         alert(data.error);
@@ -136,7 +136,7 @@ async function placeOrder(food_id) {
 
     if (res.ok) {
         alert("Order placed! OTP: " + data.otp);
-        window.location.href = "otp.html";
+        window.location.href = "/otp.html";
     } else {
         alert(data.error);
     }

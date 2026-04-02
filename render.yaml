@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: food-to-ngo-backend
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    autoDeploy: true
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: DB_NAME
+        value: food_distribution

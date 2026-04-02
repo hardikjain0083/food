@@ -1,23 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Restaurant Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Dashboard - FoodLink</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
+<body onload="initRestaurantPage()">
+    <div class="background-orb orb-one"></div>
+    <div class="background-orb orb-two"></div>
 
-    <h2>Add Food</h2>
+    <header class="site-header">
+        <div class="brand">FoodLink</div>
+        <nav class="nav-actions">
+            <button class="btn btn-ghost" onclick="goBack()">Back</button>
+            <button class="btn btn-ghost" onclick="goForward()">Forward</button>
+            <a class="btn btn-ghost" href="/index.html">Home</a>
+            <button class="btn btn-secondary" onclick="logout()">Logout</button>
+        </nav>
+    </header>
 
-    <input id="food_name" placeholder="Food Name"><br><br>
-    <input id="food_type" placeholder="veg / non-veg / jain"><br><br>
-    <input id="shelf" placeholder="Shelf Life (hours)"><br><br>
-    <input id="dry" placeholder="dry / wet"><br><br>
-    <input id="cal" placeholder="Calories"><br><br>
-    <input id="smu" placeholder="SMU Equivalent"><br><br>
-    <input id="qty" placeholder="Quantity (SMU)"><br><br>
+    <main class="page-shell">
+        <section class="panel form-panel">
+            <h1>Restaurant Dashboard</h1>
+            <p class="muted">Add surplus food details for NGOs to request pickup quickly.</p>
 
-    <button onclick="addFood()">Add Food</button>
+            <div class="two-col">
+                <div class="field">
+                    <label for="food_name">Food Name</label>
+                    <input id="food_name" placeholder="Example: Veg Biryani">
+                </div>
 
-    <script src="script.js"></script>
+                <div class="field">
+                    <label for="food_type">Food Type</label>
+                    <input id="food_type" placeholder="veg / non-veg / jain">
+                </div>
 
+                <div class="field">
+                    <label for="shelf">Shelf Life (hours)</label>
+                    <input id="shelf" type="number" min="1" placeholder="6">
+                </div>
+
+                <div class="field">
+                    <label for="dry">Dry or Wet</label>
+                    <input id="dry" placeholder="dry / wet">
+                </div>
+
+                <div class="field">
+                    <label for="cal">Calories</label>
+                    <input id="cal" type="number" min="1" placeholder="600">
+                </div>
+
+                <div class="field">
+                    <label for="smu">SMU Equivalent</label>
+                    <input id="smu" type="number" min="1" placeholder="1">
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="qty">Total Quantity (SMU)</label>
+                <input id="qty" type="number" min="1" placeholder="20">
+            </div>
+
+            <button class="btn btn-primary" onclick="addFood()">Add Food Item</button>
+        </section>
+    </main>
+
+    <script src="/script.js"></script>
 </body>
 </html>

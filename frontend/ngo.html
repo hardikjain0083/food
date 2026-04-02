@@ -1,15 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>NGO Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGO Dashboard - FoodLink</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
 </head>
-<body onload="loadFood()">
+<body onload="initNgoPage()">
+    <div class="background-orb orb-one"></div>
+    <div class="background-orb orb-two"></div>
 
-    <h2>Available Food</h2>
+    <header class="site-header">
+        <div class="brand">FoodLink</div>
+        <nav class="nav-actions">
+            <button class="btn btn-ghost" onclick="goBack()">Back</button>
+            <button class="btn btn-ghost" onclick="goForward()">Forward</button>
+            <a class="btn btn-ghost" href="/index.html">Home</a>
+            <button class="btn btn-secondary" onclick="logout()">Logout</button>
+        </nav>
+    </header>
 
-    <div id="food-list"></div>
+    <main class="page-shell">
+        <section class="panel">
+            <h1>Available Food for Pickup</h1>
+            <p class="muted">Review active food listings and request quantities based on your SMU capacity.</p>
+            <div class="food-grid" id="food-list"></div>
+        </section>
+    </main>
 
-    <script src="script.js"></script>
-
+    <script src="/script.js"></script>
 </body>
 </html>

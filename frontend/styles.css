@@ -1,0 +1,336 @@
+:root {
+    --bg-deep: #0b1724;
+    --bg-mid: #132a3f;
+    --surface: rgba(255, 255, 255, 0.92);
+    --surface-soft: rgba(255, 255, 255, 0.78);
+    --text-dark: #102031;
+    --text-muted: #4a6073;
+    --brand: #0e7c86;
+    --brand-dark: #0a5c64;
+    --accent: #ef8f3b;
+    --accent-dark: #d97621;
+    --line: #d9e3ec;
+    --shadow: 0 20px 45px rgba(4, 23, 41, 0.22);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--text-dark);
+    background: radial-gradient(circle at 12% 20%, #244f72 0%, transparent 30%),
+        radial-gradient(circle at 88% 80%, #1a6f63 0%, transparent 28%),
+        linear-gradient(130deg, var(--bg-deep), var(--bg-mid));
+    font-family: "Manrope", "Segoe UI", Tahoma, sans-serif;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.background-orb {
+    position: fixed;
+    border-radius: 999px;
+    pointer-events: none;
+    filter: blur(3px);
+    opacity: 0.42;
+}
+
+.orb-one {
+    width: 300px;
+    height: 300px;
+    background: #2eb2a6;
+    top: -80px;
+    left: -60px;
+    animation: drift 12s ease-in-out infinite;
+}
+
+.orb-two {
+    width: 380px;
+    height: 380px;
+    background: #f4ad6d;
+    right: -120px;
+    bottom: -120px;
+    animation: drift 14s ease-in-out infinite reverse;
+}
+
+@keyframes drift {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(20px); }
+    100% { transform: translateY(0px); }
+}
+
+.site-header {
+    width: min(1120px, calc(100% - 40px));
+    margin: 22px auto 0;
+    padding: 14px 18px;
+    border-radius: 16px;
+    background: var(--surface-soft);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: var(--shadow);
+    position: relative;
+    z-index: 2;
+}
+
+.brand {
+    font-family: "Sora", "Segoe UI", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    color: var(--bg-mid);
+}
+
+.nav-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.landing-wrap,
+.page-shell {
+    width: min(1120px, calc(100% - 40px));
+    margin: 28px auto 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero {
+    background: var(--surface);
+    border-radius: 24px;
+    padding: clamp(24px, 5vw, 54px);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    animation: reveal 700ms ease;
+}
+
+.eyebrow {
+    margin: 0;
+    color: var(--brand-dark);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+}
+
+.hero h1 {
+    font-family: "Sora", "Segoe UI", sans-serif;
+    margin: 14px 0 14px;
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    line-height: 1.1;
+}
+
+.hero-subtext {
+    margin: 0;
+    max-width: 65ch;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+.hero-cta {
+    margin-top: 26px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.feature-grid {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+}
+
+.feature-card {
+    background: var(--surface-soft);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+}
+
+.feature-card h3 {
+    margin: 0 0 8px;
+    font-family: "Sora", "Segoe UI", sans-serif;
+}
+
+.feature-card p {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+.panel {
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    box-shadow: var(--shadow);
+    animation: reveal 700ms ease;
+}
+
+.auth-panel {
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.form-panel {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.panel h1 {
+    margin: 0;
+    font-family: "Sora", "Segoe UI", sans-serif;
+}
+
+.muted {
+    color: var(--text-muted);
+    margin: 10px 0 0;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 14px;
+}
+
+label {
+    font-weight: 600;
+}
+
+input,
+select {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background: #fff;
+    color: var(--text-dark);
+}
+
+input:focus,
+select:focus {
+    border-color: var(--brand);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(14, 124, 134, 0.2);
+}
+
+.two-col {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.btn {
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    font-family: inherit;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(11, 99, 108, 0.35);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(217, 118, 33, 0.3);
+}
+
+.btn-ghost {
+    background: #eaf1f7;
+    color: var(--bg-mid);
+    border: 1px solid #d4e0ea;
+}
+
+.btn-block {
+    width: 100%;
+    margin-top: 18px;
+}
+
+.helper-text {
+    margin-top: 14px;
+    color: var(--text-muted);
+}
+
+.helper-text a {
+    color: var(--brand-dark);
+    font-weight: 700;
+}
+
+.food-grid {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+}
+
+.food-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.food-card h3 {
+    margin: 0;
+    font-family: "Sora", "Segoe UI", sans-serif;
+}
+
+.food-card p {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 900px) {
+    .two-col {
+        grid-template-columns: 1fr;
+    }
+
+    .site-header {
+        width: calc(100% - 24px);
+        margin-top: 14px;
+        border-radius: 14px;
+    }
+
+    .landing-wrap,
+    .page-shell {
+        width: calc(100% - 24px);
+    }
+}

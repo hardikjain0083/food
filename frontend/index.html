@@ -1,11 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=/login.html">
-  <title>Redirecting...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FoodLink - Smart Food Distribution</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  Redirecting to login...
+  <div class="background-orb orb-one"></div>
+  <div class="background-orb orb-two"></div>
+
+  <header class="site-header">
+    <div class="brand">FoodLink</div>
+    <nav class="nav-actions">
+      <a class="btn btn-ghost" href="/login.html">Login</a>
+      <a class="btn btn-primary" href="/signup.html">Create Account</a>
+    </nav>
+  </header>
+
+  <main class="landing-wrap">
+    <section class="hero">
+      <p class="eyebrow">Smart Surplus Distribution Platform</p>
+      <h1>Bridge Surplus Meals to NGOs with Fair, Fast Allocation</h1>
+      <p class="hero-subtext">
+        Reduce food waste and serve communities efficiently with SMU-based allocation,
+        role-based dashboards, and OTP verified pickups.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="/signup.html?role=restaurant">Signup as Restaurant</a>
+        <a class="btn btn-secondary" href="/signup.html?role=ngo">Signup as NGO</a>
+        <a class="btn btn-ghost" href="/login.html">Already Registered? Login</a>
+      </div>
+    </section>
+
+    <section class="feature-grid">
+      <article class="feature-card">
+        <h3>Fair Distribution</h3>
+        <p>Capacity-aware SMU logic keeps allocation equitable across NGOs.</p>
+      </article>
+      <article class="feature-card">
+        <h3>Real-time Availability</h3>
+        <p>See active, non-expired food items and request pickups instantly.</p>
+      </article>
+      <article class="feature-card">
+        <h3>Secure Pickup Flow</h3>
+        <p>OTP verification ensures controlled handoff at collection time.</p>
+      </article>
+    </section>
+  </main>
+
+  <script src="/script.js"></script>
 </body>
 </html>

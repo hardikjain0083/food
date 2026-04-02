@@ -1,5 +1,72 @@
 const BASE_URL = "https://food-wa29.onrender.com";
 
+function goBack() {
+    window.history.back();
+}
+
+function goForward() {
+    window.history.forward();
+}
+
+function goHome() {
+    window.location.href = "/index.html";
+}
+
+function logout() {
+    sessionStorage.removeItem("user");
+    window.location.href = "/login.html";
+}
+
+function getCurrentUser() {
+    return JSON.parse(sessionStorage.getItem("user"));
+}
+
+function requireRole(role) {
+    const user = getCurrentUser();
+    if (!user || user.role !== role) {
+        window.location.href = "/login.html";
+        return false;
+    }
+    return true;
+}
+
+function initSignupPage() {
+    const roleSelect = document.getElementById("role");
+    const capacityWrap = document.getElementById("capacity-wrap");
+
+    if (!roleSelect || !capacityWrap) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const roleFromQuery = params.get("role");
+    if (roleFromQuery === "restaurant" || roleFromQuery === "ngo") {
+        roleSelect.value = roleFromQuery;
+    }
+
+    const toggleCapacity = () => {
+        capacityWrap.style.display = roleSelect.value === "ngo" ? "block" : "none";
+    };
+
+    roleSelect.addEventListener("change", toggleCapacity);
+    toggleCapacity();
+}
+
+function initNgoPage() {
+    if (requireRole("ngo")) {
+        loadFood();
+    }
+}
+
+function initRestaurantPage() {
+    requireRole("restaurant");
+}
+
+function initOtpPage() {
+    const user = getCurrentUser();
+    if (!user) {
+        window.location.href = "/login.html";
+    }
+}
+
 // ---------------- HELPER FUNCTIONS ----------------
 function getRestaurantId(user) {
     return user.restaurant_id;
@@ -12,6 +79,7 @@ function getNgoId(user) {
 // ---------------- SIGNUP ----------------
 async function signup() {
     const role = document.getElementById("role").value;
+    const capacityRaw = document.getElementById("capacity").value;
 
     let data = {
         name: document.getElementById("name").value,
@@ -21,7 +89,7 @@ async function signup() {
     };
 
     if (role === "ngo") {
-        data.total_capacity_smu = parseInt(document.getElementById("capacity").value);
+        data.total_capacity_smu = parseInt(capacityRaw);
     }
 
     const res = await fetch(BASE_URL + "/signup", {
@@ -68,7 +136,7 @@ async function login() {
 
 // ---------------- ADD FOOD (RESTAURANT) ----------------
 async function addFood() {
-    const user = JSON.parse(sessionStorage.getItem("user"));
+    const user = getCurrentUser();
 
     const res = await fetch(BASE_URL + "/add-food", {
         method: "POST",
@@ -102,21 +170,27 @@ async function loadFood() {
     const container = document.getElementById("food-list");
     container.innerHTML = "";
 
+    if (!Array.isArray(data) || data.length === 0) {
+        container.innerHTML = "<p class='muted'>No available food items right now. Please check again in a while.</p>";
+        return;
+    }
+
     data.forEach(food => {
         container.innerHTML += `
-            <div style="border:1px solid black; padding:10px; margin:10px;">
+            <article class="food-card">
                 <h3>${food.food_name}</h3>
-                <p>Type: ${food.food_type}</p>
-                <p>Available SMU: ${food.quantity_available_smu}</p>
-                <button onclick="placeOrder('${food.food_id}')">Request</button>
-            </div>
+                <p><strong>Type:</strong> ${food.food_type}</p>
+                <p><strong>Dry/Wet:</strong> ${food.dry_or_wet}</p>
+                <p><strong>Available SMU:</strong> ${food.quantity_available_smu}</p>
+                <button class="btn btn-primary" onclick="placeOrder('${food.food_id}')">Request Pickup</button>
+            </article>
         `;
     });
 }
 
 // ---------------- PLACE ORDER ----------------
 async function placeOrder(food_id) {
-    const user = JSON.parse(sessionStorage.getItem("user"));
+    const user = getCurrentUser();
 
     const qty = prompt("Enter SMU quantity:");
 
@@ -135,7 +209,7 @@ async function placeOrder(food_id) {
     const data = await res.json();
 
     if (res.ok) {
-        alert("Order placed! OTP: " + data.otp);
+        alert("Order placed!\nOrder ID: " + data.order_id + "\nOTP: " + data.otp);
         window.location.href = "/otp.html";
     } else {
         alert(data.error);

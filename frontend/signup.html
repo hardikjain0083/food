@@ -1,28 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Signup</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - FoodLink</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
+<body onload="initSignupPage()">
+    <div class="background-orb orb-one"></div>
+    <div class="background-orb orb-two"></div>
 
-    <h2>Signup</h2>
+    <header class="site-header">
+        <div class="brand">FoodLink</div>
+        <nav class="nav-actions">
+            <button class="btn btn-ghost" onclick="goBack()">Back</button>
+            <button class="btn btn-ghost" onclick="goForward()">Forward</button>
+            <a class="btn btn-ghost" href="/index.html">Home</a>
+        </nav>
+    </header>
 
-    <input id="name" placeholder="Name"><br><br>
-    <input id="email" placeholder="Email"><br><br>
-    <input id="password" type="password" placeholder="Password"><br><br>
+    <main class="page-shell">
+        <section class="panel auth-panel">
+            <h1>Create Account</h1>
+            <p class="muted">Join as a restaurant or NGO to start collaborating.</p>
 
-    <select id="role">
-        <option value="restaurant">Restaurant</option>
-        <option value="ngo">NGO</option>
-    </select><br><br>
+            <div class="field">
+                <label for="name">Name</label>
+                <input id="name" placeholder="Organization or Contact Name">
+            </div>
 
-    <input id="capacity" placeholder="NGO Capacity (only for NGO)"><br><br>
+            <div class="field">
+                <label for="email">Email</label>
+                <input id="email" type="email" placeholder="you@example.com">
+            </div>
 
-    <button onclick="signup()">Signup</button>
+            <div class="field">
+                <label for="password">Password</label>
+                <input id="password" type="password" placeholder="Set a secure password">
+            </div>
 
-    <p>Already have an account? <a href="/login.html">Login</a></p>
+            <div class="field">
+                <label for="role">Account Type</label>
+                <select id="role">
+                    <option value="restaurant">Restaurant</option>
+                    <option value="ngo">NGO</option>
+                </select>
+            </div>
 
-    <script src="script.js"></script>
+            <div class="field" id="capacity-wrap">
+                <label for="capacity">Total NGO Capacity (SMU)</label>
+                <input id="capacity" type="number" min="1" placeholder="Enter SMU capacity">
+            </div>
 
+            <button class="btn btn-primary btn-block" onclick="signup()">Signup</button>
+
+            <p class="helper-text">Already registered? <a href="/login.html">Login</a></p>
+        </section>
+    </main>
+
+    <script src="/script.js"></script>
 </body>
 </html>

@@ -1,18 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>OTP Verification</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification - FoodLink</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
+<body onload="initOtpPage()">
+    <div class="background-orb orb-one"></div>
+    <div class="background-orb orb-two"></div>
 
-    <h2>Verify Pickup</h2>
+    <header class="site-header">
+        <div class="brand">FoodLink</div>
+        <nav class="nav-actions">
+            <button class="btn btn-ghost" onclick="goBack()">Back</button>
+            <button class="btn btn-ghost" onclick="goForward()">Forward</button>
+            <a class="btn btn-ghost" href="/index.html">Home</a>
+        </nav>
+    </header>
 
-    <input id="order_id" placeholder="Order ID"><br><br>
-    <input id="otp" placeholder="Enter OTP"><br><br>
+    <main class="page-shell">
+        <section class="panel auth-panel">
+            <h1>Verify Pickup</h1>
+            <p class="muted">Enter order ID and OTP to complete secure handoff.</p>
 
-    <button onclick="verifyOTP()">Verify</button>
+            <div class="field">
+                <label for="order_id">Order ID</label>
+                <input id="order_id" placeholder="Paste order ID">
+            </div>
 
-    <script src="script.js"></script>
+            <div class="field">
+                <label for="otp">OTP</label>
+                <input id="otp" placeholder="Enter 4-digit OTP">
+            </div>
 
+            <button class="btn btn-primary btn-block" onclick="verifyOTP()">Verify OTP</button>
+        </section>
+    </main>
+
+    <script src="/script.js"></script>
 </body>
 </html>

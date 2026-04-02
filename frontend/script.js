@@ -1,4 +1,4 @@
-const BASE_URL = "http://127.0.0.1:5000";
+const BASE_URL = "https://food-wa29.onrender.com";
 
 // ---------------- HELPER FUNCTIONS ----------------
 function getRestaurantId(user) {
